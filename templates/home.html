@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - E-Commerce Store{% endblock %}
+
+{% block content %}
+<!-- Carousel -->
+<div id="carouselExampleDark" class="carousel slide carousel-fade " data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+            <img src="{% static 'images/banner1.png' %}" height="500" class="d-block w-100" alt="...">
+            <div class="typewriter position-absolute top-50 start-0 translate-middle-y d-md-block text-secondary px-5">
+                <h1 class="spacing py-3">Welcome To Sarika Trader</h1>
+                <h4>Use 100% Pure and Homemade Spices to make yourself healthy</h4>
+                <a href="{% url 'products:product_list' %}" class="btn btn-light btn-lg m-5">
+                    <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                </a>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'images/banner2.png' %}" height="500" class="d-block w-100" alt="...">
+            <div class="typewriter position-absolute top-50 start-0 translate-middle-y d-md-block text-light px-5">
+                <h1 class="spacing py-3">Welcome To Sarika Trader</h1>
+                <h4>Use 100% Pure and Homemade Spices to make yourself healthy</h4>
+                <a href="{% url 'products:product_list' %}" class="btn btn-light btn-lg m-5">
+                    <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                </a>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'images/banner3.png' %}" height="500" class="d-block w-100" alt="...">
+            <div class="typewriter position-absolute top-50 start-0 translate-middle-y d-md-block text-secondary px-5">
+                <h1 class="spacing py-3">Welcome To Sarika Trader</h1>
+                <h4>Use 100% Pure and Homemade Spices to make yourself healthy</h4>
+                <a href="{% url 'products:product_list' %}" class="btn btn-light btn-lg m-5">
+                    <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                </a>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'images/banner4.png' %}" height="500" class="d-block w-100" alt="...">
+            <div class="typewriter position-absolute top-50 start-0 translate-middle-y d-md-block text-light px-5">
+                <h1 class="spacing py-3">Welcome To Sarika Trader</h1>
+                <h4>Use 100% Pure and Homemade Spices to make yourself healthy</h4>
+                <a href="{% url 'products:product_list' %}" class="btn btn-light btn-lg m-5">
+                    <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                </a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<!-- Categories Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Shop by Category</h2>
+        <div class="row">
+            {% for c in categories %}
+
+            <div class="col-md-3 mb-4">
+                <div class="card text-center border-0 shadow-sm">
+                    {% if c.image %}
+                    <img src="{{ c.image.url }}" class="card-img-top" alt="{{ c.name }}"
+                        style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                        style="height: 200px;">
+                        <i class="fas fa-image text-muted fa-3x"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{c.name}}</h5>
+                        <a href="{% url 'products:product_list' %}" class="btn btn-outline-primary">Browse</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h3 class="mb-3">Stay Updated</h3>
+                <p class="mb-4">Subscribe to our newsletter and get the latest deals and updates.</p>
+                <form method="POST" action="{% url 'subscribe_newsletter' %}" class="row g-3 justify-content-center">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <input type="email" name="email" class="form-control" placeholder="Enter your email">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-light">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

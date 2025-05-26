@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Order History{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">
+        <i class="fas fa-history me-2"></i>Order History
+    </h2>
+    
+    {% if orders %}
+        <div class="row">
+            {% for order in orders %}
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">Order #{{ order.id }}</h5>
+                                <small class="text-muted">Placed on {{ order.created|date:"F d, Y" }}</small>
+                            </div>
+                            <div>
+                                <span class="badge 
+                                    {% if order.status == 'pending' %}bg-warning
+                                    {% elif order.status == 'processing' %}bg-info
+                                    {% elif order.status == 'shipped' %}bg-primary
+                                    {% elif order.status == 'delivered' %}bg-success
+                                    {% else %}bg-danger{% endif %}">
+                                    {{ order.get_status_display }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6>Items Ordered:</h6>
+                                    {% for item in order.items.all %}
+                                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                            <div>
+                                                <strong>{{ item.product.name }}</strong>
+                                                <br>
+                                                <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold">${{ item.get_cost }}</span>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6>Shipping Address</h6>
+                                            <p class="mb-1">{{ order.first_name }} {{ order.last_name }}</p>
+                                            <p class="mb-1">{{ order.address }}</p>
+                                            <p class="mb-0">{{ order.city }}, {{ order.postal_code }}</p>
+                                            
+                                            <hr>
+                                            
+                                            <div class="d-flex justify-content-between">
+                                                <strong>Total:</strong>
+                                                <strong class="text-primary">${{ order.get_total_cost }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+            <h4 class="text-muted">No orders found</h4>
+            <p class="text-muted">You haven't placed any orders yet.</p>
+            <a href="{% url 'products:product_list' %}" class="btn btn-primary">
+                <i class="fas fa-shopping-bag me-2"></i>Start Shopping
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

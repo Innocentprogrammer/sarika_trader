@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us - Sarika Trader{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <!-- Welcome Section -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-body p-0">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <img src="{% static 'images/about1.jpg' %}" class="img-fluid rounded-start h-100"
+                        alt="Sarika Trader" style="object-fit: cover; min-height: 450px;">
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="p-5">
+                        <div class="bg-light p-4 rounded">
+                            <h3 class="mb-4">About Sarika Trader</h3>
+                            <p class="text-muted">
+                                At Sarika Trader, we take pride in our commitment to the highest quality of Indian
+                                spices. Often
+                                referred to locally as the 'Spice King', we work hard to ensure the authenticity and
+                                quality of
+                                every spice we sell. Whether you are looking for something new to spice up your cooking
+                                or are an
+                                experienced chef in search of the finest spices, we have something for you. Explore our
+                                vast
+                                selection of Indian spices and seasonings and experience a taste of India like never
+                                before.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="text-center mb-5">
+        <h2 class="mb-2">Our Team</h2>
+        <h5 class="text-muted">The passion behind the business</h5>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'images/team1.jpeg' %}" class="card-img-top" alt="Gyan Chandra Saxena"
+                    style="height: 500px; object-fit: cover;">
+                <div class="card-body bg-secondary text-white text-center">
+                    <h6 class="card-text mb-0">Gyan Chandra Saxena</h6>
+                    <small>Founder & CEO</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'images/team2.JPG' %}" class="card-img-top" alt="Mrityunjay Saxena"
+                    style="height: 500px; object-fit: cover;">
+                <div class="card-body bg-secondary text-white text-center">
+                    <h6 class="card-text mb-0">Mrityunjay Saxena</h6>
+                    <small>Managing Director</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'images/team3.jpeg' %}" class="card-img-top" alt="Aman Saxena"
+                    style="height: 500px; object-fit: cover;">
+                <div class="card-body bg-secondary text-white text-center">
+                    <h6 class="card-text mb-0">Aman Saxena</h6>
+                    <small>Managing Director</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="text-center mb-5">
+        <h2 class="mb-4">Our Services</h2>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 border-0 text-center">
+                <div class="card-body">
+                    <i class="fas fa-shipping-fast fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">Scheduled Delivery and Free Shipping</h5>
+                    <p class="card-text text-muted">Free shipping on orders over ₹400. Fast and reliable delivery to
+                        your doorstep.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 border-0 text-center">
+                <div class="card-body">
+                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">100% Secure Payment</h5>
+                    <p class="card-text text-muted">Guaranteed safe transactions with advanced encryption and fraud
+                        prevention measures.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 border-0 text-center">
+                <div class="card-body">
+                    <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">Support 24/7</h5>
+                    <p class="card-text text-muted">Support available anytime, day or night, for continuous assistance.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 border-0 text-center">
+                <div class="card-body">
+                    <i class="fas fa-undo fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">Easy Returns</h5>
+                    <p class="card-text text-muted">Not satisfied? Return your purchase within 7 days for a full
+                        refund. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

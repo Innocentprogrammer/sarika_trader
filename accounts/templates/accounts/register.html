@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Register - E-Commerce Store{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-plus me-2"></i>Create Account
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <!-- Display form errors if any -->
+                    {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <h6 class="alert-heading">Please correct the following errors:</h6>
+                        {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                        <small class="d-block">{{ error }}</small>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-user-plus me-2"></i>Register
+                            </button>
+                        </div>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <!-- Google Registration Section -->
+                    <div class="text-center">
+                        <a href="{% url 'accounts:google_login' %}">
+                            <button type="button" class="w-100 btn btn-lg rounded-pill btn-outline-primary">
+                                <img src="{% static 'images/google.jpg' %}" alt="Google" width="20" height="20"
+                                    class="me-2">
+                                Sign up with Google
+                            </button>
+                        </a>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+                        <p class="mb-0">Already have an account?
+                            <a href="{% url 'accounts:login' %}" class="text-decoration-none">
+                                Login here
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
