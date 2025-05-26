@@ -24,11 +24,17 @@ This is a full-featured E-Commerce website built using Django. It supports user 
 ```
 E Commerce
 ├─ .env
+├─ .gitignore
 ├─ accounts
 │  ├─ admin.py
 │  ├─ apps.py
 │  ├─ forms.py
 │  ├─ models.py
+│  ├─ management
+│  |  ├─ __init__.py
+│  │  └─ commands
+│  │     ├─ __init__.py
+│  │     └─ create_superuser.py
 │  ├─ signals.py
 │  ├─ templates
 │  │  └─ accounts
@@ -106,6 +112,7 @@ E Commerce
 │  ├─ urls.py
 │  ├─ views.py
 │  └─__init__.py
+├─ Procfile
 ├─ requirements.txt
 ├─ static
 │  ├─ css
