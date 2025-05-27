@@ -6,7 +6,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='categories/', blank=True)
+    image = models.ImageField(blank=True)  # No upload_to
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
@@ -28,8 +28,8 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    slug = models.SlugField(max_length=200, blank=True)
+    image = models.ImageField(blank=True)  # No upload_to
     description = models.TextField(blank=True)
     quantity = models.CharField(max_length=10, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)

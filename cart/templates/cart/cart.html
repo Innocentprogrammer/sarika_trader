@@ -81,7 +81,7 @@
                     <hr>
                     <div class="d-flex justify-content-between mb-3">
                         <strong>Total</strong>
-                        {% if cart.get_total_price >= 500 %}
+                        {% if cart.get_total_price <= 500 %}
                         <strong class="text-primary">₹{{ cart.get_total_price|add:50 }}</strong>
                         {% else %}
                         <strong class="text-primary">₹{{ cart.get_total_price }}</strong>
