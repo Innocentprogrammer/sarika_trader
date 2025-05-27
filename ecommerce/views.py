@@ -125,7 +125,7 @@ def subscribe_newsletter(request):
             <p>Hi {subscriber.username if hasattr(subscriber, 'username') else 'there'},</p>
             <p>Thank you for subscribing to our newsletter. We're excited to have you with us!</p>
             <p>You’ll now receive the latest updates, market news, and exclusive offers straight to your inbox.</p>
-            <a href="https://sarikatrader.com" class="button">Visit Our Website</a>
+            <a href="https://sarika-trader.onrender.com" class="button">Visit Our Website</a>
         </div>
         <div class="footer">
             &copy; 2025 Sarika Trader. All rights reserved.
