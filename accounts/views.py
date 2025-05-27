@@ -17,7 +17,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             # Email information 
-            subject = "🎉 Welcome to Our Ecommerce Site, {user.username}!"
+            subject = "🎉 Welcome to Our Ecommerce Site, {{user.username}}!"
 
             message = f"""
 <!DOCTYPE html>
@@ -206,7 +206,7 @@ def google_callback(request):
             email=email
         )
         # Email information 
-        subject = "🎉 Welcome to Our Ecommerce Site, {user.username}!"
+        subject = "🎉 Welcome to Our Ecommerce Site, {{user.username}}!"
         message = f"""
 <!DOCTYPE html>
 <html>
