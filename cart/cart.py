@@ -77,7 +77,7 @@ class Cart:
         """
         Return shipping cost (₹50 if subtotal >= 500, else free).
         """
-        return Decimal('50') if self.get_total_price() >= Decimal('500') else Decimal('0')
+        return Decimal('50') if self.get_total_price() <= Decimal('400') else Decimal('0')
 
     def get_total_with_tax_and_shipping(self):
         """

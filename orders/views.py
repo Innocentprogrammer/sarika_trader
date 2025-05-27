@@ -52,7 +52,7 @@ def order_success(request, order_id):
     # Calculate prices manually
     subtotal = sum(item.price * item.quantity for item in order_items)
     tax = subtotal * Decimal(0.05)
-    if subtotal >= 400:
+    if subtotal <= 400:
         shipping = Decimal(50)
     else:
         shipping = Decimal(0)
