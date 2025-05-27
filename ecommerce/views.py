@@ -61,17 +61,140 @@ def subscribe_newsletter(request):
         form = SubscriberForm(request.POST)
         if form.is_valid():
             subscriber = form.save()
-            subject = "Thanks for Subscribing to Sarika Trader!"
+            subject = "🎉 Thanks for Subscribing to Sarika Trader!"
             message = f"""
-            <h2>Welcome!</h2>
-            <p>Thank you for subscribing to our newsletter.</p>
-            <p>You’ll now receive updates and exclusive offers from us.</p>
-            """
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {{
+            background-color: #f5f8fa;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }}
+        .header {{
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }}
+        .header h2 {{
+            color: #e67e22;
+            margin: 0;
+        }}
+        .content {{
+            padding: 20px 0;
+        }}
+        .content p {{
+            font-size: 16px;
+            line-height: 1.6;
+        }}
+        .button {{
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #e67e22;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }}
+        .footer {{
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+            margin-top: 30px;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Welcome to Sarika Trader!</h2>
+        </div>
+        <div class="content">
+            <p>Hi {subscriber.username if hasattr(subscriber, 'username') else 'there'},</p>
+            <p>Thank you for subscribing to our newsletter. We're excited to have you with us!</p>
+            <p>You’ll now receive the latest updates, market news, and exclusive offers straight to your inbox.</p>
+            <a href="https://sarikatrader.com" class="button">Visit Our Website</a>
+        </div>
+        <div class="footer">
+            &copy; 2025 Sarika Trader. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
+"""
             send_brevo_email(subject, message, [subscriber.email])
 
             # Optional: notify admin
-            admin_subject = f"New Newsletter Subscriber: {subscriber.email}"
-            admin_message = f"<p>A new user just subscribed to the newsletter: <strong>{subscriber.email}</strong></p>"
+            admin_subject = f"📬 New Newsletter Subscriber: {subscriber.email}"
+            admin_message = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 0;
+            margin: 0;
+            color: #333;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }}
+        .header {{
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }}
+        .header h2 {{
+            margin: 0;
+            color: #2980b9;
+            font-size: 20px;
+        }}
+        .content p {{
+            font-size: 16px;
+        }}
+        .footer {{
+            margin-top: 30px;
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>New Subscriber Alert 🚀</h2>
+        </div>
+        <div class="content">
+            <p><strong>Email:</strong> {subscriber.email}</p>
+            <p>This user has just subscribed to the newsletter.</p>
+        </div>
+        <div class="footer">
+            <p>— Automated Notification from Sarika Trader</p>
+        </div>
+    </div>
+</body>
+</html>
+"""
             from django.conf import settings
             send_brevo_email(admin_subject, admin_message, [settings.ADMIN_EMAIL])
 

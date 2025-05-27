@@ -20,7 +20,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Order Details</h5>
                                     <p class="mb-1"><strong>Order ID:</strong> #{{ order.id }}</p>
-                                    <p class="mb-1"><strong>Total:</strong> ${{ order.get_total_cost }}</p>
+                                    <p class="mb-1"><strong>Total:</strong> ₹{{ order.get_total_cost }}</p>
                                     <p class="mb-0"><strong>Status:</strong> 
                                         <span class="badge bg-warning">{{ order.get_status_display }}</span>
                                     </p>
@@ -56,8 +56,8 @@
                                         <tr>
                                             <td>{{ item.product.name }}</td>
                                             <td>{{ item.quantity }}</td>
-                                            <td>${{ item.price }}</td>
-                                            <td>${{ item.get_cost }}</td>
+                                            <td>₹{{ item.price }}</td>
+                                            <td>₹{{ item.get_cost }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

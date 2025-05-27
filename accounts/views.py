@@ -17,8 +17,77 @@ def register(request):
         if form.is_valid():
             user = form.save()
             # Email information 
-            subject = "Welcome to Our Ecommerce Site!"
-            message = f"<h2>Hi {user.username},</h2><p>Thanks for registering.</p>"
+            subject = "🎉 Welcome to Our Ecommerce Site, {user.username}!"
+
+            message = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }}
+        .header {{
+            text-align: center;
+            padding-bottom: 20px;
+        }}
+        .header h2 {{
+            color: #2E86C1;
+            margin-bottom: 10px;
+        }}
+        .content p {{
+            font-size: 16px;
+            line-height: 1.6;
+        }}
+        .button {{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #2E86C1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }}
+        .footer {{
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #aaa;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Hi {user.username},</h2>
+            <p>🎉 Thanks for joining us at <strong>Our Ecommerce Site</strong>!</p>
+        </div>
+        <div class="content">
+            <p>We're thrilled to have you on board. Explore amazing products, enjoy exclusive deals, and make the most of your shopping experience.</p>
+            <p>Start browsing our collection now and discover something special just for you!</p>
+            <a href="https://sarika-trader.onrender.com" class="button">Start Shopping 🛍️</a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 Our Ecommerce Site. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+"""
+
             send_brevo_email(subject, message, [user.email])
             login(request, user)
             messages.success(request, 'Account created successfully!')
@@ -137,8 +206,75 @@ def google_callback(request):
             email=email
         )
         # Email information 
-        subject = "Welcome to Our Ecommerce Site!"
-        message = f"<h2>Hi {user.username},</h2><p>Thanks for registering.</p>"
+        subject = "🎉 Welcome to Our Ecommerce Site, {user.username}!"
+        message = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }}
+        .header {{
+            text-align: center;
+            padding-bottom: 20px;
+        }}
+        .header h2 {{
+            color: #2E86C1;
+            margin-bottom: 10px;
+        }}
+        .content p {{
+            font-size: 16px;
+            line-height: 1.6;
+        }}
+        .button {{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #2E86C1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }}
+        .footer {{
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #aaa;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Hi {user.username},</h2>
+            <p>🎉 Thanks for joining us at <strong>Our Ecommerce Site</strong>!</p>
+        </div>
+        <div class="content">
+            <p>We're thrilled to have you on board. Explore amazing products, enjoy exclusive deals, and make the most of your shopping experience.</p>
+            <p>Start browsing our collection now and discover something special just for you!</p>
+            <a href="https://sarika-trader.onrender.com" class="button">Start Shopping 🛍️</a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 Our Ecommerce Site. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+"""
         send_brevo_email(subject, message, [user.email])
         login(request, user)
 
