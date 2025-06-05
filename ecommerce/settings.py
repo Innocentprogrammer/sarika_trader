@@ -92,10 +92,11 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL")
+        default=config("DATABASE_URL"),
+        conn_max_age=600,  # Optional: keeps DB connection alive
+        ssl_require=True   # Neon requires SSL
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
